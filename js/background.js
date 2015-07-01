@@ -113,6 +113,7 @@ chrome.contextMenus.onClicked.addListener(function (info,tab){
     if(info.menuItemId === "MHTML"){
         chrome.tabs.query({active:true,currentWindow:true},function(tabs){
         	var title = tabs[0].title.substring(0,12);
+            title = title.replace(/[\\\'\`\|\^\"\<\>\)\(\}\{\]\[\;\#\/\*\!\?\:\@\%\&\=\+\$\,]/g,"");
             chrome.pageCapture.saveAsMHTML({tabId:tabs[0].id},function(mhtml){
                 var url = window.URL.createObjectURL(mhtml);
                 chrome.downloads.download({saveAs:false,url:url,filename:title+".mhtml"});

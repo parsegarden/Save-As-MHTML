@@ -2,12 +2,14 @@
 	"manifest_version":2,
 	"name": "Save As MHTML",
 	"description": "Save As MHTML",
-	"version": "2.0",
+	"version": "2.3",
 	"content_scripts": [{
 		"all_frames": false,
 		"run_at": "document_start",
 		"js": [ "js/contentscript.js" ],
 		"matches": [
+			"http://*/*",
+			"https://*/*",
 			"<all_urls>"
 		]
 	}],

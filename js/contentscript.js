@@ -2,7 +2,12 @@ var check = function(same){
 	var idx = 0,atagobj = {},urls = [],ary = [];
 	var hostname = location.hostname;
 	var atags = document.querySelectorAll("a");
-	var title = document.getElementsByTagName('title')[0].textContent.substring(0,10);
+	var title = document.getElementsByTagName('title')[0];
+	if(title){
+		title = title.textContent;
+		title = title.replace(/[\\\'\`\|\^\"\<\>\)\(\}\{\]\[\;\#\/\*\!\?\:\@\%\&\=\+\$\,]/g,"");
+		title = title.substring(0,18).replace(/^\s+|\s+$/g, "");
+	}
 	if(!title)title = hostname;
 	ary.push(pushItem(location.href,title))
 	for (var i = 0; i < atags.length; i++) {
